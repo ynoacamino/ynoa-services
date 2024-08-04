@@ -1,31 +1,17 @@
-import { getServerSession } from 'next-auth';
-import Image from 'next/image';
-import { authConfig } from './api/auth/[...nextauth]/authConfig';
-import Login from './Login';
-import Logout from './Logout';
+import ServiceInfo from '@/components/pages/ynoaShorter/ServiceInfo';
+import TitleShorter from '@/components/pages/ynoaShorter/Title';
 
-export default async function Home() {
-  const session = await getServerSession(authConfig);
-
-  if (!session) return <Login />;
-
+export default function Home() {
   return (
-    <main>
-      <div>
-        <h1>
-          Welcome
-          {' '}
-          {session.user?.name}
-          <Image width={100} height={100} src={session.user?.image || ''} alt={session.user?.name || ''} />
-          <span>
-            Email:
-            {' '}
-            {session.user?.email}
-          </span>
-        </h1>
-        <p>This is a protected page</p>
+    <main className="px-6 w-full max-w-7xl relative">
+      <TitleShorter />
+      <div className="flex flex-col my-20 gap-32 w-full">
+        {
+          Array.from({ length: 4 }).map(() => (
+            <ServiceInfo key={crypto.randomUUID()} />
+          ))
+        }
       </div>
-      <Logout />
     </main>
   );
 }

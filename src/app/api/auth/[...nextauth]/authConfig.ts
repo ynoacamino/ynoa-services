@@ -1,17 +1,14 @@
-import {
-  CLIENT_ID_GITHUB, CLIENT_SECRET_GITHUB, NEXT_SECRET,
-} from '@/config';
 import { AuthOptions } from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
 
 export const authConfig: AuthOptions = {
   providers: [
     GitHubProvider({
-      clientId: CLIENT_ID_GITHUB,
-      clientSecret: CLIENT_SECRET_GITHUB,
+      clientId: process.env.CLIENT_ID_GITHUB,
+      clientSecret: process.env.CLIENT_SECRET_GITHUB,
     }),
   ],
-  secret: NEXT_SECRET,
+  secret: process.env.NEXT_SECRET,
   callbacks: {
     async session({ session }) {
       if (!session.user) return session;
