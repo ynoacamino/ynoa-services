@@ -4,19 +4,23 @@ import { Oswald } from 'next/font/google';
 
 const oswald = Oswald({ subsets: ['latin'] });
 
-export default function ServiceInfo() {
+export default function ServiceInfo({ serviceName, serviceDescription1, serviceDescription2 }: {
+  serviceName: string;
+  serviceDescription1: string;
+  serviceDescription2: string;
+}) {
   return (
     <section className="w-full grid md:grid-cols-2">
       <div className="flex flex-col gap-4">
         <h1 className={cn(oswald.className, 'uppercase font-bold text-6xl')}>
-          Shorter
+          {serviceName}
         </h1>
         <main className="flex flex-col gap-4">
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            {serviceDescription1}
           </p>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            {serviceDescription2}
           </p>
         </main>
         <footer className="w-full flex items-center gap-6">
